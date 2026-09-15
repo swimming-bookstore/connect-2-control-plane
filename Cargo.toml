@@ -1,0 +1,39 @@
+[package]
+name = "connect-2-control-plane"
+version = "0.1.0"
+edition = "2021"
+description = "Teleport-compatible control plane (auth + proxy) written in Rust"
+license = "Apache-2.0"
+
+[dependencies]
+anyhow = "1"
+base64 = "0.22"
+bytes = "1"
+clap = { version = "4", features = ["derive"] }
+dashmap = "6"
+hex = "0.4"
+http = "1"
+http-body-util = "0.1"
+hyper = { version = "1", features = ["http1", "http2", "server"] }
+hyper-util = { version = "0.1", features = ["tokio", "server-auto", "http1", "http2"] }
+openssl = { version = "0.10", features = ["vendored"] }
+rand = "0.8"
+russh = { path = "vendor/russh" }
+tokio-stream = "0.1"
+rustls = { version = "0.23", default-features = false, features = ["std", "tls12", "ring"] }
+rustls-pki-types = "1"
+rustls-pemfile = "2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serde_yaml = "0.9"
+sha2 = "0.10"
+ssh-key = { version = "0.6", features = ["alloc", "ed25519", "ecdsa", "p256", "p384", "rsa", "encryption", "rand_core"] }
+tokio = { version = "1", features = ["full"] }
+tokio-rustls = "0.26"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+uuid = { version = "1", features = ["v4"] }
+
+[profile.release]
+lto = true
+codegen-units = 1
